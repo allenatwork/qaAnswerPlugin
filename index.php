@@ -1,1 +1,1 @@
-<?phpinclude_once("controllers/controller.php");//error_reporting(0);$controller = new Controller();$controller->invoke();?>
+<?phpinclude_once("controllers/controller.php");//error_reporting(0);$controller = new Controller();$controller->invoke();?>
