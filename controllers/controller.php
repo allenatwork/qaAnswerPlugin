@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	require_once("models/model.php");
 	require ("sphinxapi.php");
 	
@@ -17,12 +17,12 @@
 			$detail=$_REQUEST['detail'];
 			
 			if(!isset($question)&&!isset($task)) {
-			// Chua có câu hỏi và cũng chưa có yêu cầu=> Chỉ hiển thị Form question
+			// Chua cÃ³ cÃ¢u há»�i vÃ  cÅ©ng chÆ°a cÃ³ yÃªu cáº§u=> Chá»‰ hiá»ƒn thá»‹ Form question
 				include 'views/questionsearch.html';
 				include 'views/footer.html';
 			}
 			else { 
-			// Đã có câu hỏi và có câu yêu cầu. Bắt đầu tìm kiếm câu hỏi
+			// Ä�Ã£ cÃ³ cÃ¢u há»�i vÃ  cÃ³ cÃ¢u yÃªu cáº§u. Báº¯t Ä‘áº§u tÃ¬m kiáº¿m cÃ¢u há»�i           
 				$cl = new SphinxClient();
 				$cl->SetServer( "localhost", 9312 );
 				$cl->SetMatchMode( SPH_MATCH_ANY  );
