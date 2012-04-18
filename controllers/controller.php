@@ -21,9 +21,11 @@ class Controller {
         $id = $_REQUEST['id'];
 
         if (!isset($question) && !isset($task)) {
-            include 'views/questionsearch.html';
-            include 'views/footer.html';
+            // Chua có câu hỏi và cũng chưa có yêu cầu=> Chỉ hiển thị Form question
+            include 'views/searchQuestion.php';
+            include 'views/footer.php';
         } else {
+            // Đã có câu hỏi và có câu yêu cầu. Bắt đầu tìm kiếm câu hỏi
             switch ($task) {
                 case "search":
                     $cl = new SphinxClient();
@@ -38,22 +40,22 @@ class Controller {
                         $this->model->connect_db();
                         global $questionList;
                         $questionList = $this->model->getQuestionList();
-                        include 'views/questionsearch.html';
-                        include 'views/questionlist.html';
-                        include 'views/footer.html';
+                        $this->model->close_db();
+                        include 'views/searchQuestion.php';
+                        include 'views/viewList.php';
+                        include 'views/footer.php';
                     }
                     break;
-                case "view":
-                    $this->model = new Model();
-                    global $question;
-                    $question = $this->model->getQuestion($id);
-                    $question->display();
-                    echo "View answer for this question.";
+                case "viewquestion":
+                    $this->model = new Model;
+                    $this->model->connect_db();
+                    $question=$this->model->getQuestion($id);
+                    $question->display_full();
+                    $this->model->close_db();
                     break;
             }
         }
     }
 
 }
-
 ?>
